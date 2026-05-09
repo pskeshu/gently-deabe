@@ -1,0 +1,28 @@
+# Example model registry for the high-NA asymmetric diSPIM nuclear pipeline.
+# Copy this file to e.g. `configs/local.yaml` and fill in the `path` values
+# to point at your own checkpoint locations. The real local file should NOT
+# be committed (see .gitignore).
+#
+# Each entry's `path` may be a directory of `weights_<epoch>_<loss>.hdf5`
+# files (lowest-loss is auto-picked) or a single `.hdf5` file.
+
+models:
+  step1_spima:
+    path: /path/to/highNA_diSPIM_Nuclear/Step1_DeAbe_Training/RCAN_Model_SPIMA
+    kind: rcan
+    description: DeAbe Step 1, asymmetric diSPIM, nuclear marker, SPIMA (high-NA) view
+
+  step1_spimb:
+    path: /path/to/highNA_diSPIM_Nuclear/Step1_DeAbe_Training/RCAN_Model_SPIMB
+    kind: rcan
+    description: DeAbe Step 1, asymmetric diSPIM, nuclear marker, SPIMB (orthogonal) view
+
+  step2_decon:
+    path: /path/to/highNA_diSPIM_Nuclear/Step2_Decon_Training/RCAN_Model
+    kind: rcan
+    description: DL deconvolution Step 2, view-shared (5x3 RCAN)
+
+  step3_expan:
+    path: /path/to/highNA_diSPIM_Nuclear/Step3_Expan_Training/RCAN_Model
+    kind: rcan
+    description: Expansion-microscopy-style sharpening Step 3 (5x5 RCAN)
