@@ -93,7 +93,11 @@ def apply(
             patch = image[src]
             if actual != block_shape:
                 pad_width = [(0, b - a) for b, a in zip(block_shape, actual)]
-                patch = np.pad(patch, pad_width, mode="constant")
+                # `reflect` matches the upstream 3D-RCAN/rcan/utils.apply.
+                # Constant (zero) padding creates artificial discontinuities
+                # at image-boundary tiles that the model interprets as edges,
+                # producing visibly different output along the volume border.
+                patch = np.pad(patch, pad_width, mode="reflect")
 
             x = torch.from_numpy(patch).to(device).unsqueeze(0).unsqueeze(0)
             y = model(x).squeeze(0).squeeze(0).detach().cpu().numpy()

@@ -10,7 +10,7 @@ Public API:
 from .model import RCAN, RCAB, ChannelAttention, ResidualGroup
 from .convert import convert
 from .inference import apply, normalize
-from .pipeline import Pipeline, PipelineStep
+from .pipeline import Pipeline, PipelineStep, lab_exact_diSPIM
 from .registry import ModelRegistry, ModelEntry
 
 __all__ = [
@@ -23,6 +23,7 @@ __all__ = [
     "normalize",
     "Pipeline",
     "PipelineStep",
+    "lab_exact_diSPIM",
     "ModelRegistry",
     "ModelEntry",
 ]
